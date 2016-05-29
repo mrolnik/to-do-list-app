@@ -1,0 +1,4 @@
+[debug] Copy resource mappings: 
+[debug] 	(/home/mica/Desktop/WIX/to-do-list-app/conf/routes,/home/mica/Desktop/WIX/to-do-list-app/target/scala-2.11/classes/routes)
+[debug] 	(/home/mica/Desktop/WIX/to-do-list-app/conf/logback.xml,/home/mica/Desktop/WIX/to-do-list-app/target/scala-2.11/classes/logback.xml)
+[debug] 	(/home/mica/Desktop/WIX/to-do-list-app/conf/application.conf,/home/mica/Desktop/WIX/to-do-list-app/target/scala-2.11/classes/application.conf)

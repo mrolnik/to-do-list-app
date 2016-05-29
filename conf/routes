@@ -1,0 +1,21 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+GET  /add/:desctiption                           controllers.TodoController.addItem(desctiption: String)
+#addItem (description) - adds an item to the list. Returns an ID.
+#POST    /                           controllers.TodoController.add
+#getAllitems() - returns a list of the items and when was the item added to the list.
+#deleteItem(ID) - removes the item from the list.
+#For extra points -
+#showHistory() - retu
