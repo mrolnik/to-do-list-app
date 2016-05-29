@@ -15,11 +15,15 @@ class TodoController @Inject()(module: TodoModule) extends Controller {
     request =>
       request.body.asJson map {
         bodyStr =>
-          (bodyStr \ "description").as[String] match {
-            case "" => BadRequest("Forgot to add description?")
-            case description => module.addItem(description) map {
-              id => Ok(id.toString)
-            } getOrElse BadRequest("Something went wrong =( !")
+          try {
+            (bodyStr \ "description").as[String] match {
+              case "" => BadRequest("Forgot to add description?")
+              case description => module.addItem(description) map {
+                id => Ok(id.toString)
+              } getOrElse BadRequest("Something went wrong =( !")
+            }
+          } catch{
+            case e => BadRequest("Something went wrong, forgot to add description?")
           }
       } getOrElse BadRequest("Forgot to add description?")
   }
