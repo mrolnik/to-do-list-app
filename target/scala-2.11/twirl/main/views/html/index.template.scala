@@ -57,7 +57,7 @@ Seq[Any](format.raw/*5.19*/("""
 object index extends index_Scope0.index
               /*
                   -- GENERATED --
-                  DATE: Thu May 26 19:56:09 ART 2016
+                  DATE: Sun May 29 02:10:31 ART 2016
                   SOURCE: /home/mica/Desktop/WIX/to-do-list-app/app/views/index.scala.html
                   HASH: a81f108240070e68924090e3fa0e4a45e1b4ba99
                   MATRIX: 616->95|728->112|757->308|785->310|817->333|857->335|890->464|922->470|937->476|992->510|1025->513

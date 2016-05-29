@@ -7,51 +7,51 @@
 		revision="1.0-SNAPSHOT"
 		conf="compile"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20160529015408"/>
+		date="20160529021029"/>
 	<dependencies>
 		<module organisation="com.typesafe.play" name="anorm_2.11">
-			<revision name="2.5.0" status="release" pubdate="20150804235602" resolver="public" artresolver="public" homepage="https://github.com/playframework/anorm" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="62">
+			<revision name="2.5.0" status="release" pubdate="20150804235602" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/anorm" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="62">
 				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
-				<metadata-artifact status="successful" details="" size="3647" time="1071" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm_2.11/ivy-2.5.0.xml" searched="true" original-local-location="/home/mica/.ivy2/cache/com.typesafe.play/anorm_2.11/ivy-2.5.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/anorm_2.11/2.5.0/anorm_2.11-2.5.0.pom"/>
+				<metadata-artifact status="no" details="" size="4134" time="0" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm_2.11/ivy-2.5.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/anorm_2.11/2.5.0/anorm_2.11-2.5.0.pom"/>
 				<caller organisation="to-do-list-app" name="to-do-list-app_2.11" conf="compile" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="anorm_2.11" type="jar" ext="jar" status="successful" details="" size="655247" time="3780" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm_2.11/jars/anorm_2.11-2.5.0.jar">
+					<artifact name="anorm_2.11" type="jar" ext="jar" status="no" details="" size="655247" time="0" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm_2.11/jars/anorm_2.11-2.5.0.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/play/anorm_2.11/2.5.0/anorm_2.11-2.5.0.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.jsuereth" name="scala-arm_2.11">
-			<revision name="1.4" status="release" pubdate="20140430132655" resolver="public" artresolver="public" homepage="http://jsuereth.com/scala-arm" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="64">
+			<revision name="1.4" status="release" pubdate="20140430132655" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jsuereth.com/scala-arm" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="64">
 				<license name="BSD-Style" url="http://www.opensource.org/licenses/bsd-license.php"/>
-				<metadata-artifact status="successful" details="" size="2460" time="964" location="/home/mica/.ivy2/cache/com.jsuereth/scala-arm_2.11/ivy-1.4.xml" searched="true" original-local-location="/home/mica/.ivy2/cache/com.jsuereth/scala-arm_2.11/ivy-1.4.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/jsuereth/scala-arm_2.11/1.4/scala-arm_2.11-1.4.pom"/>
+				<metadata-artifact status="no" details="" size="3312" time="0" location="/home/mica/.ivy2/cache/com.jsuereth/scala-arm_2.11/ivy-1.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/jsuereth/scala-arm_2.11/1.4/scala-arm_2.11-1.4.pom"/>
 				<caller organisation="com.typesafe.play" name="anorm_2.11" conf="default, compile, runtime, master" rev="1.4" rev-constraint-default="1.4" rev-constraint-dynamic="1.4" callerrev="2.5.0"/>
 				<artifacts>
-					<artifact name="scala-arm_2.11" type="jar" ext="jar" status="successful" details="" size="73939" time="1061" location="/home/mica/.ivy2/cache/com.jsuereth/scala-arm_2.11/jars/scala-arm_2.11-1.4.jar">
+					<artifact name="scala-arm_2.11" type="jar" ext="jar" status="no" details="" size="73939" time="0" location="/home/mica/.ivy2/cache/com.jsuereth/scala-arm_2.11/jars/scala-arm_2.11-1.4.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/jsuereth/scala-arm_2.11/1.4/scala-arm_2.11-1.4.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="org.scala-lang.plugins" name="scala-continuations-library_2.11">
-			<revision name="1.0.1" status="release" pubdate="20140416062514" resolver="public" artresolver="public" homepage="http://www.scala-lang.org/" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="65">
+			<revision name="1.0.1" status="release" pubdate="20140416062514" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="65">
 				<license name="BSD 3-clause" url="http://opensource.org/licenses/BSD-3-Clause"/>
-				<metadata-artifact status="successful" details="" size="2366" time="977" location="/home/mica/.ivy2/cache/org.scala-lang.plugins/scala-continuations-library_2.11/ivy-1.0.1.xml" searched="true" original-local-location="/home/mica/.ivy2/cache/org.scala-lang.plugins/scala-continuations-library_2.11/ivy-1.0.1.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.1/scala-continuations-library_2.11-1.0.1.pom"/>
+				<metadata-artifact status="no" details="" size="3063" time="0" location="/home/mica/.ivy2/cache/org.scala-lang.plugins/scala-continuations-library_2.11/ivy-1.0.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.1/scala-continuations-library_2.11-1.0.1.pom"/>
 				<caller organisation="com.jsuereth" name="scala-arm_2.11" conf="compile, runtime" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="1.4"/>
 				<artifacts>
-					<artifact name="scala-continuations-library_2.11" type="bundle" ext="jar" status="successful" details="" size="26038" time="984" location="/home/mica/.ivy2/cache/org.scala-lang.plugins/scala-continuations-library_2.11/bundles/scala-continuations-library_2.11-1.0.1.jar">
+					<artifact name="scala-continuations-library_2.11" type="bundle" ext="jar" status="no" details="" size="26038" time="0" location="/home/mica/.ivy2/cache/org.scala-lang.plugins/scala-continuations-library_2.11/bundles/scala-continuations-library_2.11-1.0.1.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/plugins/scala-continuations-library_2.11/1.0.1/scala-continuations-library_2.11-1.0.1.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.typesafe.play" name="anorm-tokenizer_2.11">
-			<revision name="2.5.0" status="release" pubdate="20150804235600" resolver="public" artresolver="public" homepage="https://github.com/playframework/anorm" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="63">
+			<revision name="2.5.0" status="release" pubdate="20150804235600" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/anorm" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="63">
 				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
-				<metadata-artifact status="successful" details="" size="1701" time="914" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm-tokenizer_2.11/ivy-2.5.0.xml" searched="true" original-local-location="/home/mica/.ivy2/cache/com.typesafe.play/anorm-tokenizer_2.11/ivy-2.5.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/anorm-tokenizer_2.11/2.5.0/anorm-tokenizer_2.11-2.5.0.pom"/>
+				<metadata-artifact status="no" details="" size="2828" time="0" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm-tokenizer_2.11/ivy-2.5.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/anorm-tokenizer_2.11/2.5.0/anorm-tokenizer_2.11-2.5.0.pom"/>
 				<caller organisation="com.typesafe.play" name="anorm_2.11" conf="default, compile, runtime, master" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="2.5.0"/>
 				<artifacts>
-					<artifact name="anorm-tokenizer_2.11" type="jar" ext="jar" status="successful" details="" size="25072" time="1020" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm-tokenizer_2.11/jars/anorm-tokenizer_2.11-2.5.0.jar">
+					<artifact name="anorm-tokenizer_2.11" type="jar" ext="jar" status="no" details="" size="25072" time="0" location="/home/mica/.ivy2/cache/com.typesafe.play/anorm-tokenizer_2.11/jars/anorm-tokenizer_2.11-2.5.0.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/play/anorm-tokenizer_2.11/2.5.0/anorm-tokenizer_2.11-2.5.0.jar"/>
 					</artifact>
 				</artifacts>

@@ -68,7 +68,7 @@ Seq[Any](format.raw/*7.32*/("""
 object main extends main_Scope0.main
               /*
                   -- GENERATED --
-                  DATE: Thu May 26 19:56:09 ART 2016
+                  DATE: Sun May 29 02:10:31 ART 2016
                   SOURCE: /home/mica/Desktop/WIX/to-do-list-app/app/views/main.scala.html
                   HASH: b3310cc09ef09add3f7262f9b2cc640f61a6e3c3
                   MATRIX: 784->260|909->290|937->292|1017->397|1053->406|1088->414|1114->419|1203->481|1218->487|1281->528|1369->589|1384->595|1445->634|1497->659|1512->665|1574->706|1668->862|1705->872|1733->879|1765->884

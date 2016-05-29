@@ -1,8 +1,10 @@
 package modules
 
-import models.TodoId
 import javax.inject.{Inject, Singleton}
-import scala.util.{Success, Try}
+
+import models.Todo
+
+import scala.util.{Failure, Success}
 
 /**
   * Created by mica on 28/05/16.
@@ -10,11 +12,18 @@ import scala.util.{Success, Try}
 @Singleton
 class TodoModule @Inject()(db : DB){
 
-  def addItem(description: String): Try[TodoId] = {
+  def addItem(description: String): Option[Int] = {
     db.addItem(description) match {
-      case Success()
+      case Success(todoId) => Some(todoId)
+      case Failure(e) => None
     }
+  }
 
+  def getItem(id: Int): Option[Todo] = {
+    db.getItem(id) match {
+      case Success(someTodo) => someTodo
+      case Failure(e) => None
+    }
   }
 
 }

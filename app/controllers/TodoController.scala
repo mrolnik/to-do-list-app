@@ -2,12 +2,10 @@ package controllers
 
 import javax.inject.Inject
 
-import models.{Todo, TodoDescription, TodoId}
+import models.Todo
 import modules.TodoModule
-import play.api.mvc.{Controller, Action}
-import play.api.libs.json.{JsValue, Writes, Json}
-
-import scala.util.{Failure, Success}
+import play.api.libs.json.{JsValue, Json, Writes}
+import play.api.mvc.{Action, Controller}
 
 /**
   * Created by mica on 26/05/16.
@@ -18,9 +16,7 @@ class TodoController @Inject()(module : TodoModule)extends Controller {
   implicit val toDoWriter = new Writes[Any] {
     def writes (item: Any): JsValue = {
       item match {
-        case TodoId(id) => Json.obj("id" -> id)
-        case TodoDescription(description) => Json.obj("description" -> description)
-       // case Todo(id, description) => Json.obj(Json.toJson(id), Json.toJson(description))
+        case Todo(id, description, date) => Json.obj("id" -> id, "description" -> description, "date" -> date)
         case _ => Json.obj()
 
       }
@@ -29,8 +25,15 @@ class TodoController @Inject()(module : TodoModule)extends Controller {
 
   def addItem(description: String) = Action {
     module.addItem(description) match {
-      case Success(response) => Ok(Json.toJson(response)).as("application/json; charset=UTF-8")
-      case Failure(e) => NotFound
+      case Some(id) => Ok(id.toString).as("application/json; charset=UTF-8")
+      case _ => NotFound
+    }
+  }
+
+  def getItem(id: Int) = Action {
+    module.getItem(id) match {
+      case Some(todoId) => Ok(Json.toJson(todoId)).as("application/json; charset=UTF-8")
+      case _ => NotFound
     }
   }
   def getAllItems = Action {

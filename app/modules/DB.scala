@@ -1,11 +1,12 @@
 package modules
 
+import java.time.Instant
+import java.util.Date
 import javax.inject.{Inject, Singleton}
 
-import models.TodoId
-import play.api.db
+import models.Todo
 import play.api.db.Database
-
+import anorm.SQL
 import scala.util.{Success, Try}
 
 /**
@@ -14,19 +15,39 @@ import scala.util.{Success, Try}
 @Singleton
 class DB @Inject()(db : Database){
 
-  db.withConnection {conn=>
-    val stmt = conn.createStatement()
-    stmt.execute("CREATE TABLE TODO (" +
-      "id MEDIUMINT NOT NULL AUTO_INCREMENT," +
-      "description VARCHAR(255) NOT NULL," +
-      "PRIMARY KEY (id));")
+  db.withConnection {implicit c =>
+    SQL(
+      """
+        DROP TABLE TODO IF EXISTS
+      """
+    ).execute()
 
-    //stmt.execute("INSERT INTO TODO (description) VALUES ('Buy some milk'), ('Pay the debts')")
+    SQL(
+      """
+        CREATE TABLE TODO (
+        id MEDIUMINT NOT NULL AUTO_INCREMENT,
+        description VARCHAR(255) NOT NULL,
+        PRIMARY KEY (id));
+      """
+    ).execute()
+
+  }
+
+  def getItem(id: Int): Try[Option[Todo]] = {
+    db.withConnection { implicit c =>
+      val a = SQL( s"SELECT * FROM TODO WHERE ID=${id}").executeQuery()
+      Success(Some(Todo(id, "descripcion", Date.from(Instant.now))))
+    }
   }
 
   def addItem(description: String) : Try[Int] = {
+    db.withConnection { implicit c =>
+      val a = SQL("INSERT INTO TODO (description) VALUES ({description})")
+              .on("description" -> description).executeInsert()
 
-    db.withConnection { conn =>
+      Success(1)
+    }
+    /*db.withConnection { conn =>
       val stmt = conn.createStatement()
   stmt.pr
       val rs = stmt.executeQuery(s"INSERT INTO TODO (description) VALUES ('${description}')")
@@ -34,8 +55,8 @@ class DB @Inject()(db : Database){
       while (rs.next()) {
         resp += rs.getString("DESCRIPTION")
       }
-      Success(1)
-    }
+}
+      */
   }
 
 }

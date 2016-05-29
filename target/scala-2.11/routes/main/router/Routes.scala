@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/mica/Desktop/WIX/to-do-list-app/conf/routes
-// @DATE:Sat May 28 22:54:33 ART 2016
+// @DATE:Sun May 29 03:04:09 ART 2016
 
 package router
 
@@ -59,6 +59,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """message""", """controllers.AsyncController.message"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """add/""" + "$" + """desctiption<[^/]+>""", """controllers.TodoController.addItem(desctiption:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """get/""" + "$" + """id<[^/]+>""", """controllers.TodoController.getItem(id:Int)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -151,6 +152,23 @@ class Routes(
     )
   )
 
+  // @LINE:16
+  private[this] lazy val controllers_TodoController_getItem5_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("get/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_TodoController_getItem5_invoker = createInvoker(
+    TodoController_3.getItem(fakeValue[Int]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TodoController",
+      "getItem",
+      Seq(classOf[Int]),
+      "GET",
+      """""",
+      this.prefix + """get/""" + "$" + """id<[^/]+>"""
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -182,6 +200,12 @@ class Routes(
     case controllers_TodoController_addItem4_route(params) =>
       call(params.fromPath[String]("desctiption", None)) { (desctiption) =>
         controllers_TodoController_addItem4_invoker.call(TodoController_3.addItem(desctiption))
+      }
+  
+    // @LINE:16
+    case controllers_TodoController_getItem5_route(params) =>
+      call(params.fromPath[Int]("id", None)) { (id) =>
+        controllers_TodoController_getItem5_invoker.call(TodoController_3.getItem(id))
       }
   }
 }

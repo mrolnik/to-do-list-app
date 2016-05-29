@@ -6,3 +6,7 @@ exit
 RUN
 run
 h2-browser
+clean
+compile
+build
+h2-playserver
