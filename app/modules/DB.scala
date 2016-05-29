@@ -66,11 +66,11 @@ class DB @Inject()(db : Database){
   def addItem(description: String) : Option[Long] = {
       db.withConnection { implicit c =>
         try {
-          val a =  SQL(s"INSERT INTO TODO (description) VALUES ('${description}')").executeInsert()
-          a match {
+          val idOption = SQL(s"INSERT INTO TODO (description) VALUES ('${description}')").executeInsert()
+
+          idOption match{
             case Some(id : Long) => trackTransaction("ITEM ADDED",id)
           }
-          a
 
         }catch{
           case e:Exception  => {
