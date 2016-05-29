@@ -1,10 +1,11 @@
 package modules
 
+import java.sql.Connection
 import java.util.Date
 import javax.inject.{Inject, Singleton}
 
 import anorm.{SQL, SqlParser}
-import models.Todo
+import models.{TodoHistory, Todo}
 import play.Logger
 import play.api.db.Database
 
@@ -35,14 +36,14 @@ class DB @Inject()(db : Database){
         id MEDIUMINT NOT NULL AUTO_INCREMENT,
         itemId MEDIUMINT NOT NULL,
         description VARCHAR(255) NOT NULL,
-        ID TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id));
       """
     ).execute()
 
   }
 
-  def trackTransaction(description: String, itemId: Long) = {
+  def trackTransaction(description: String, itemId: Long)(implicit c :Connection) = {
     SQL(s"INSERT INTO HISTORY (description, itemId) VALUES ('${description}', ${itemId})").executeInsert()
   }
 
@@ -65,13 +66,11 @@ class DB @Inject()(db : Database){
   def addItem(description: String) : Option[Long] = {
       db.withConnection { implicit c =>
         try {
-          SQL(s"INSERT INTO TODO (description) VALUES ('${description}')").executeInsert() match {
-            case Some(id) => {
-                trackTransaction("ITEM ADDED",id)
-                Some(id)
-            }
-              case _ => None
+          val a =  SQL(s"INSERT INTO TODO (description) VALUES ('${description}')").executeInsert()
+          a match {
+            case Some(id : Long) => trackTransaction("ITEM ADDED",id)
           }
+          a
 
         }catch{
           case e:Exception  => {
@@ -86,7 +85,10 @@ class DB @Inject()(db : Database){
     db.withConnection { implicit c =>
       try {
         SQL(s"DELETE FROM TODO WHERE ID=${id}").executeUpdate() match {
-          case i if i != 0 => true
+          case i if i != 0 => {
+            trackTransaction("ITEM DELETED", id)
+            true
+          }
           case _ => false
         }
       }catch{
@@ -105,6 +107,23 @@ class DB @Inject()(db : Database){
         Some(result() map {
           row =>
             Todo(row[Int]("id"), row[String]("description"), row[Date]("date"))
+        } toList)
+      }catch{
+        case e:Exception  => {
+          Logger.debug(e.getMessage())
+          None
+        }
+      }
+    }
+  }
+
+  def getHistory :  Option[List[TodoHistory]] = {
+    db.withConnection { implicit c =>
+      try {
+        val result =  SQL( s"SELECT * FROM HISTORY").executeQuery()
+        Some(result() map {
+          row =>
+            TodoHistory(row[Int]("id"), row[String]("description"), row[Int]("itemId"), row[Date]("date"))
         } toList)
       }catch{
         case e:Exception  => {

@@ -2,7 +2,7 @@ package modules
 
 import javax.inject.{Inject, Singleton}
 
-import models.Todo
+import models.{TodoHistory, Todo}
 
 /**
   * Created by mica on 28/05/16.
@@ -18,4 +18,5 @@ class TodoModule @Inject()(db : DB){
 
   def getAllItems: Option[List[Todo]] = db.getAllItems
 
+  def getHistory: Option[List[TodoHistory]] = db.getHistory
 }

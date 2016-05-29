@@ -1,15 +1,9 @@
-2016-05-29 04:04:24,341 [INFO] from play.core.server.NettyServer in pool-4-thread-3 - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
-2016-05-29 04:04:45,980 [INFO] from application in ForkJoinPool-1-worker-1 - Creating Pool for datasource 'default'
-2016-05-29 04:04:46,643 [INFO] from play.api.db.DefaultDBApi in ForkJoinPool-1-worker-1 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:04:46,680 [INFO] from application in ForkJoinPool-1-worker-1 - ApplicationTimer demo: Starting application at 2016-05-29T07:04:46.658Z.
-2016-05-29 04:04:47,893 [INFO] from play.api.Play in ForkJoinPool-1-worker-1 - Application started (Dev)
-2016-05-29 04:22:05,328 [ERROR] from application in netty-event-loop-7 - 
+2016-05-29 16:00:09,427 [INFO] from play.core.server.NettyServer in pool-4-thread-5 - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2016-05-29 16:00:32,353 [ERROR] from application in netty-event-loop-3 - 
 
-! @708khjp0g - Internal server error, for (GET) [/add/hola2] ->
+! @708o5c7dj - Internal server error, for (GET) [/get/1] ->
  
-play.sbt.PlayExceptions$CompilationException: Compilation error[polymorphic expression cannot be instantiated to expected type;
- found   : [A]anorm.ResultSetParser[Option[Long]]
- required: anorm.ResultSetParser[Option[Int]]]
+play.sbt.PlayExceptions$CompilationException: Compilation error[No Json serializer found for type models.Todo. Try to implement an implicit Writes or Format for this type.]
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at scala.Option.map(Option.scala:145)
@@ -33,19 +27,17 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[polymorphic expr
 	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 04:22:56,132 [ERROR] from application in netty-event-loop-7 - 
+	at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1689)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2016-05-29 16:02:25,346 [ERROR] from application in netty-event-loop-3 - 
 
-! @708khmm92 - Internal server error, for (GET) [/add/hola2] ->
+! @708o5iipe - Internal server error, for (GET) [/get/1] ->
  
-play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
- found   : Option[Long]
- required: Option[Int]]
+play.sbt.PlayExceptions$CompilationException: Compilation error[diverging implicit expansion for type play.api.libs.json.Writes[T]
+starting with object JsValueWrites in trait DefaultWrites]
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at scala.Option.map(Option.scala:145)
@@ -69,102 +61,17 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
 	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 04:23:36,181 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Stopping application at 2016-05-29T07:23:36.180Z after 1130s.
-2016-05-29 04:23:36,218 [INFO] from application in application-akka.actor.default-dispatcher-4 - Shutting down connection pool.
-2016-05-29 04:23:36,755 [INFO] from application in application-akka.actor.default-dispatcher-4 - Creating Pool for datasource 'default'
-2016-05-29 04:23:36,777 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-4 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:23:36,785 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2016-05-29T07:23:36.779Z.
-2016-05-29 04:23:37,314 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-4 - Application started (Dev)
-2016-05-29 04:24:53,946 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Stopping application at 2016-05-29T07:24:53.946Z after 77s.
-2016-05-29 04:24:53,946 [INFO] from application in application-akka.actor.default-dispatcher-5 - Shutting down connection pool.
-2016-05-29 04:24:54,340 [INFO] from application in application-akka.actor.default-dispatcher-5 - Creating Pool for datasource 'default'
-2016-05-29 04:24:54,352 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-5 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:24:54,355 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Starting application at 2016-05-29T07:24:54.353Z.
-2016-05-29 04:24:56,863 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-5 - Application started (Dev)
-2016-05-29 04:25:57,242 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T07:25:57.242Z after 63s.
-2016-05-29 04:25:57,242 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
-2016-05-29 04:25:57,673 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2016-05-29 04:25:57,692 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:25:57,700 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T07:25:57.694Z.
-2016-05-29 04:25:58,422 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
-2016-05-29 04:27:38,702 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Stopping application at 2016-05-29T07:27:38.702Z after 101s.
-2016-05-29 04:27:38,703 [INFO] from application in application-akka.actor.default-dispatcher-6 - Shutting down connection pool.
-2016-05-29 04:27:39,264 [INFO] from application in application-akka.actor.default-dispatcher-6 - Creating Pool for datasource 'default'
-2016-05-29 04:27:39,296 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-6 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:27:39,307 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2016-05-29T07:27:39.298Z.
-2016-05-29 04:27:44,211 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-6 - Application started (Dev)
-2016-05-29 04:27:54,079 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - Column "HOLA2" not found; SQL statement:
-INSERT INTO TODO (description) VALUES (hola2) [42122-191]
-2016-05-29 04:27:59,986 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - Column "HOLA2" not found; SQL statement:
-INSERT INTO TODO (description) VALUES (hola2) [42122-191]
-2016-05-29 04:28:00,020 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - Column "HOLA2" not found; SQL statement:
-INSERT INTO TODO (description) VALUES (hola2) [42122-191]
-2016-05-29 04:28:11,032 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T07:28:11.032Z after 31s.
-2016-05-29 04:28:11,032 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
-2016-05-29 04:28:12,642 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2016-05-29 04:28:12,676 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:28:12,680 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T07:28:12.678Z.
-2016-05-29 04:28:13,784 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
-2016-05-29 04:28:24,867 [DEBUG] from application in application-akka.actor.default-dispatcher-6 - Column "HOLA2" not found; SQL statement:
-INSERT INTO TODO (description) VALUES (hola2) [42122-191]
-2016-05-29 04:28:48,110 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Stopping application at 2016-05-29T07:28:48.110Z after 36s.
-2016-05-29 04:28:48,111 [INFO] from application in application-akka.actor.default-dispatcher-6 - Shutting down connection pool.
-2016-05-29 04:28:48,501 [INFO] from application in application-akka.actor.default-dispatcher-6 - Creating Pool for datasource 'default'
-2016-05-29 04:28:48,545 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-6 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:28:48,548 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2016-05-29T07:28:48.546Z.
-2016-05-29 04:28:49,543 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-6 - Application started (Dev)
-2016-05-29 04:29:52,200 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Stopping application at 2016-05-29T07:29:52.200Z after 64s.
-2016-05-29 04:29:52,202 [INFO] from application in application-akka.actor.default-dispatcher-7 - Shutting down connection pool.
-2016-05-29 04:29:52,496 [INFO] from application in application-akka.actor.default-dispatcher-7 - Creating Pool for datasource 'default'
-2016-05-29 04:29:52,525 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-7 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:29:52,527 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Starting application at 2016-05-29T07:29:52.526Z.
-2016-05-29 04:29:55,897 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-7 - Application started (Dev)
-2016-05-29 04:31:42,958 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Stopping application at 2016-05-29T07:31:42.957Z after 110s.
-2016-05-29 04:31:42,958 [INFO] from application in application-akka.actor.default-dispatcher-4 - Shutting down connection pool.
-2016-05-29 04:31:43,337 [INFO] from application in application-akka.actor.default-dispatcher-4 - Creating Pool for datasource 'default'
-2016-05-29 04:31:43,372 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-4 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:31:43,378 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2016-05-29T07:31:43.373Z.
-2016-05-29 04:31:44,134 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-4 - Application started (Dev)
-2016-05-29 04:33:12,063 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T07:33:12.063Z after 89s.
-2016-05-29 04:33:12,064 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
-2016-05-29 04:33:12,245 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2016-05-29 04:33:12,248 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:33:12,257 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T07:33:12.250Z.
-2016-05-29 04:33:12,902 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
-2016-05-29 04:33:13,165 [DEBUG] from application in application-akka.actor.default-dispatcher-2 - SqlMappingError(No rows when expecting a single one)
-2016-05-29 04:42:44,220 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T07:42:44.220Z after 572s.
-2016-05-29 04:42:44,220 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
-2016-05-29 04:42:44,426 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2016-05-29 04:42:44,437 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:42:44,441 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T07:42:44.438Z.
-2016-05-29 04:42:48,826 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
-2016-05-29 04:43:30,370 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - SqlMappingError(No rows when expecting a single one)
-2016-05-29 04:43:30,370 [DEBUG] from application in application-akka.actor.default-dispatcher-4 - SqlMappingError(No rows when expecting a single one)
-2016-05-29 04:49:50,925 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Stopping application at 2016-05-29T07:49:50.924Z after 426s.
-2016-05-29 04:49:50,925 [INFO] from application in application-akka.actor.default-dispatcher-7 - Shutting down connection pool.
-2016-05-29 04:49:51,147 [INFO] from application in application-akka.actor.default-dispatcher-7 - Creating Pool for datasource 'default'
-2016-05-29 04:49:51,151 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-7 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:49:51,156 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Starting application at 2016-05-29T07:49:51.153Z.
-2016-05-29 04:49:51,678 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-7 - Application started (Dev)
-2016-05-29 04:51:53,828 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Stopping application at 2016-05-29T07:51:53.828Z after 122s.
-2016-05-29 04:51:53,829 [INFO] from application in application-akka.actor.default-dispatcher-2 - Shutting down connection pool.
-2016-05-29 04:51:54,000 [INFO] from application in application-akka.actor.default-dispatcher-2 - Creating Pool for datasource 'default'
-2016-05-29 04:51:54,009 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-2 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 04:51:54,012 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Starting application at 2016-05-29T07:51:54.010Z.
-2016-05-29 04:51:54,454 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-2 - Application started (Dev)
-2016-05-29 05:22:00,598 [ERROR] from application in netty-event-loop-2 - 
+	at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1689)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2016-05-29 16:09:15,085 [ERROR] from application in netty-event-loop-5 - 
 
-! @708kpgdgb - Internal server error, for (GET) [/get/4] ->
+! @708o6g12l - Internal server error, for (GET) [/get/1] ->
  
-play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
- found   : models.Todo
- required: (String, play.api.libs.json.Json.JsValueWrapper)]
+play.sbt.PlayExceptions$CompilationException: Compilation error[overriding method toJson in trait JsonTodo of type => com.fasterxml.jackson.annotation.JsonValue;
+ method toJson has incompatible type]
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at scala.Option.map(Option.scala:145)
@@ -188,19 +95,16 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
 	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 05:23:05,941 [ERROR] from application in netty-event-loop-2 - 
+	at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1689)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2016-05-29 16:10:32,547 [ERROR] from application in netty-event-loop-5 - 
 
-! @708kpk67g - Internal server error, for (GET) [/get/4] ->
+! @708o6kbhp - Internal server error, for (GET) [/get/1] ->
  
-play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
- found   : models.Todo
- required: (String, play.api.libs.json.Json.JsValueWrapper)]
+play.sbt.PlayExceptions$CompilationException: Compilation error[value Assets is not a member of object controllers.routes]
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
 	at scala.Option.map(Option.scala:145)
@@ -224,246 +128,39 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
 	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
 	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 05:24:31,880 [ERROR] from application in netty-event-loop-2 - 
-
-! @708kpp3b6 - Internal server error, for (GET) [/get/4] ->
- 
-play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
- found   : None.type
- required: Some[List[models.Todo]]]
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:49)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:44)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:44)
-	at play.sbt.run.PlayReload$.compileFailure(PlayReload.scala:40)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at scala.util.Either$LeftProjection.map(Either.scala:377)
-	at play.sbt.run.PlayReload$.compile(PlayReload.scala:17)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.runsupport.Reloader$$anonfun$reload$1.apply(Reloader.scala:338)
-	at play.runsupport.Reloader$$anon$3.run(Reloader.scala:43)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:39)
-	at play.runsupport.Reloader.reload(Reloader.scala:336)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:118)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 05:25:36,930 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T08:25:36.930Z after 2022s.
-2016-05-29 05:25:36,930 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
-2016-05-29 05:25:37,080 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2016-05-29 05:25:37,091 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 05:25:37,095 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T08:25:37.093Z.
-2016-05-29 05:25:40,224 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
-2016-05-29 05:26:18,756 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Stopping application at 2016-05-29T08:26:18.755Z after 41s.
-2016-05-29 05:26:18,756 [INFO] from application in application-akka.actor.default-dispatcher-2 - Shutting down connection pool.
-2016-05-29 05:26:19,567 [INFO] from application in application-akka.actor.default-dispatcher-2 - Creating Pool for datasource 'default'
-2016-05-29 05:26:19,576 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-2 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 05:26:19,579 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Starting application at 2016-05-29T08:26:19.577Z.
-2016-05-29 05:26:20,328 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-2 - Application started (Dev)
-2016-05-29 05:32:37,274 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-14) - HikariPool-14 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 05:37:15,717 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-14) - HikariPool-14 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 05:39:21,980 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-14) - HikariPool-14 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 05:42:29,676 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-14) - HikariPool-14 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 05:48:39,706 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-14) - HikariPool-14 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 05:55:04,430 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-14) - HikariPool-14 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 05:55:29,815 [DEBUG] from application in application-akka.actor.default-dispatcher-2 - SqlMappingError(too many rows when expecting a single one)
-2016-05-29 05:56:30,634 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Stopping application at 2016-05-29T08:56:30.633Z after 1811s.
-2016-05-29 05:56:30,634 [INFO] from application in application-akka.actor.default-dispatcher-4 - Shutting down connection pool.
-2016-05-29 05:56:31,230 [INFO] from application in application-akka.actor.default-dispatcher-4 - Creating Pool for datasource 'default'
-2016-05-29 05:56:31,245 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-4 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 05:56:31,248 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2016-05-29T08:56:31.246Z.
-2016-05-29 05:56:34,589 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-4 - Application started (Dev)
-2016-05-29 05:57:45,685 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Stopping application at 2016-05-29T08:57:45.685Z after 74s.
-2016-05-29 05:57:45,686 [INFO] from application in application-akka.actor.default-dispatcher-6 - Shutting down connection pool.
-2016-05-29 05:57:45,995 [INFO] from application in application-akka.actor.default-dispatcher-6 - Creating Pool for datasource 'default'
-2016-05-29 05:57:45,999 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-6 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 05:57:46,002 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2016-05-29T08:57:46Z.
-2016-05-29 05:57:50,562 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-6 - Application started (Dev)
-2016-05-29 06:00:20,899 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-16) - HikariPool-16 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:01:41,943 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-16) - HikariPool-16 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:02:48,440 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Stopping application at 2016-05-29T09:02:48.440Z after 302s.
-2016-05-29 06:02:48,441 [INFO] from application in application-akka.actor.default-dispatcher-7 - Shutting down connection pool.
-2016-05-29 06:02:48,622 [INFO] from application in application-akka.actor.default-dispatcher-7 - Creating Pool for datasource 'default'
-2016-05-29 06:02:48,625 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-7 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:02:48,629 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Starting application at 2016-05-29T09:02:48.626Z.
-2016-05-29 06:02:49,303 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-7 - Application started (Dev)
-2016-05-29 06:08:50,399 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-17) - HikariPool-17 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:09:59,969 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-17) - HikariPool-17 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:12:47,451 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-17) - HikariPool-17 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:17:18,112 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T09:17:18.111Z after 870s.
-2016-05-29 06:17:18,112 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
-2016-05-29 06:17:18,377 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2016-05-29 06:17:18,386 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:17:18,390 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T09:17:18.387Z.
-2016-05-29 06:17:22,409 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
-2016-05-29 06:17:54,642 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T09:17:54.642Z after 36s.
-2016-05-29 06:17:54,642 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
-2016-05-29 06:17:54,915 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2016-05-29 06:17:54,922 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:17:54,925 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T09:17:54.923Z.
-2016-05-29 06:17:55,446 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
-2016-05-29 06:21:36,288 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Stopping application at 2016-05-29T09:21:36.288Z after 222s.
-2016-05-29 06:21:36,288 [INFO] from application in application-akka.actor.default-dispatcher-5 - Shutting down connection pool.
-2016-05-29 06:21:36,609 [INFO] from application in application-akka.actor.default-dispatcher-5 - Creating Pool for datasource 'default'
-2016-05-29 06:21:36,630 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-5 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:21:36,635 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Starting application at 2016-05-29T09:21:36.631Z.
-2016-05-29 06:21:37,295 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-5 - Application started (Dev)
-2016-05-29 06:22:31,812 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Stopping application at 2016-05-29T09:22:31.811Z after 55s.
-2016-05-29 06:22:31,812 [INFO] from application in application-akka.actor.default-dispatcher-5 - Shutting down connection pool.
-2016-05-29 06:22:31,930 [INFO] from application in application-akka.actor.default-dispatcher-5 - Creating Pool for datasource 'default'
-2016-05-29 06:22:31,934 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-5 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:22:31,936 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Starting application at 2016-05-29T09:22:31.934Z.
-2016-05-29 06:22:32,544 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-5 - Application started (Dev)
-2016-05-29 06:27:07,438 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-21) - HikariPool-21 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:27:16,097 [ERROR] from application in netty-event-loop-2 - 
-
-! @708l857kk - Internal server error, for (GET) [/all] ->
- 
-play.sbt.PlayExceptions$CompilationException: Compilation error[Cannot write an instance of List[play.api.libs.json.JsValue] to HTTP response. Try to define a Writeable[List[play.api.libs.json.JsValue]]]
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:49)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:44)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:44)
-	at play.sbt.run.PlayReload$.compileFailure(PlayReload.scala:40)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at scala.util.Either$LeftProjection.map(Either.scala:377)
-	at play.sbt.run.PlayReload$.compile(PlayReload.scala:17)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.runsupport.Reloader$$anonfun$reload$1.apply(Reloader.scala:338)
-	at play.runsupport.Reloader$$anon$3.run(Reloader.scala:43)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:39)
-	at play.runsupport.Reloader.reload(Reloader.scala:336)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:118)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 06:28:18,493 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Stopping application at 2016-05-29T09:28:18.492Z after 347s.
-2016-05-29 06:28:18,493 [INFO] from application in application-akka.actor.default-dispatcher-2 - Shutting down connection pool.
-2016-05-29 06:28:18,741 [INFO] from application in application-akka.actor.default-dispatcher-2 - Creating Pool for datasource 'default'
-2016-05-29 06:28:18,759 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-2 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:28:18,762 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Starting application at 2016-05-29T09:28:18.760Z.
-2016-05-29 06:28:22,689 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-2 - Application started (Dev)
-2016-05-29 06:30:36,773 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-22) - HikariPool-22 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:30:40,821 [ERROR] from application in netty-event-loop-1 - 
-
-! @708l8gogm - Internal server error, for (GET) [/all] ->
- 
-play.sbt.PlayExceptions$CompilationException: Compilation error[Unmatched closing brace '}' ignored here]
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:49)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:44)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:44)
-	at play.sbt.run.PlayReload$.compileFailure(PlayReload.scala:40)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at scala.util.Either$LeftProjection.map(Either.scala:377)
-	at play.sbt.run.PlayReload$.compile(PlayReload.scala:17)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.runsupport.Reloader$$anonfun$reload$1.apply(Reloader.scala:338)
-	at play.runsupport.Reloader$$anon$3.run(Reloader.scala:43)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:39)
-	at play.runsupport.Reloader.reload(Reloader.scala:336)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:118)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 06:31:21,369 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Stopping application at 2016-05-29T09:31:21.368Z after 183s.
-2016-05-29 06:31:21,376 [INFO] from application in application-akka.actor.default-dispatcher-2 - Shutting down connection pool.
-2016-05-29 06:31:21,717 [INFO] from application in application-akka.actor.default-dispatcher-2 - Creating Pool for datasource 'default'
-2016-05-29 06:31:21,723 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-2 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:31:21,726 [INFO] from application in application-akka.actor.default-dispatcher-2 - ApplicationTimer demo: Starting application at 2016-05-29T09:31:21.724Z.
-2016-05-29 06:31:22,105 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-2 - Application started (Dev)
-2016-05-29 06:33:18,829 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Stopping application at 2016-05-29T09:33:18.829Z after 117s.
-2016-05-29 06:33:18,829 [INFO] from application in application-akka.actor.default-dispatcher-7 - Shutting down connection pool.
-2016-05-29 06:33:18,953 [INFO] from application in application-akka.actor.default-dispatcher-7 - Creating Pool for datasource 'default'
-2016-05-29 06:33:18,958 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-7 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:33:18,962 [INFO] from application in application-akka.actor.default-dispatcher-7 - ApplicationTimer demo: Starting application at 2016-05-29T09:33:18.960Z.
-2016-05-29 06:33:19,562 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-7 - Application started (Dev)
-2016-05-29 06:36:52,069 [WARN] from com.zaxxer.hikari.pool.HikariPool in Hikari housekeeper (pool HikariPool-24) - HikariPool-24 - Unusual system clock change detected, soft-evicting connections from pool.
-2016-05-29 06:37:27,256 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Stopping application at 2016-05-29T09:37:27.256Z after 249s.
-2016-05-29 06:37:27,257 [INFO] from application in application-akka.actor.default-dispatcher-4 - Shutting down connection pool.
-2016-05-29 06:37:27,526 [INFO] from application in application-akka.actor.default-dispatcher-4 - Creating Pool for datasource 'default'
-2016-05-29 06:37:27,570 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-4 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:37:27,573 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2016-05-29T09:37:27.571Z.
-2016-05-29 06:37:30,824 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-4 - Application started (Dev)
-2016-05-29 06:38:36,093 [ERROR] from application in netty-event-loop-1 - 
-
-! @708l9hpid - Internal server error, for (GET) [/all] ->
- 
-play.sbt.PlayExceptions$CompilationException: Compilation error[')' expected but '}' found.]
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:49)
-	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:44)
-	at scala.Option.map(Option.scala:145)
-	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:44)
-	at play.sbt.run.PlayReload$.compileFailure(PlayReload.scala:40)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
-	at scala.util.Either$LeftProjection.map(Either.scala:377)
-	at play.sbt.run.PlayReload$.compile(PlayReload.scala:17)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
-	at play.runsupport.Reloader$$anonfun$reload$1.apply(Reloader.scala:338)
-	at play.runsupport.Reloader$$anon$3.run(Reloader.scala:43)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:39)
-	at play.runsupport.Reloader.reload(Reloader.scala:336)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:118)
-	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
-2016-05-29 06:38:50,156 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Stopping application at 2016-05-29T09:38:50.156Z after 83s.
-2016-05-29 06:38:50,156 [INFO] from application in application-akka.actor.default-dispatcher-5 - Shutting down connection pool.
-2016-05-29 06:38:50,284 [INFO] from application in application-akka.actor.default-dispatcher-5 - Creating Pool for datasource 'default'
-2016-05-29 06:38:50,293 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-5 - Database [default] connected at jdbc:h2:mem:play
-2016-05-29 06:38:50,296 [INFO] from application in application-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Starting application at 2016-05-29T09:38:50.294Z.
-2016-05-29 06:38:51,217 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-5 - Application started (Dev)
+	at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1689)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2016-05-29 16:11:19,864 [INFO] from application in ForkJoinPool-1-worker-1 - Creating Pool for datasource 'default'
+2016-05-29 16:11:20,530 [INFO] from play.api.db.DefaultDBApi in ForkJoinPool-1-worker-1 - Database [default] connected at jdbc:h2:mem:play
+2016-05-29 16:11:20,695 [INFO] from application in ForkJoinPool-1-worker-1 - ApplicationTimer demo: Starting application at 2016-05-29T19:11:20.545Z.
+2016-05-29 16:11:22,093 [INFO] from play.api.Play in ForkJoinPool-1-worker-1 - Application started (Dev)
+2016-05-29 16:11:35,390 [DEBUG] from application in application-akka.actor.default-dispatcher-2 - SqlMappingError(No rows when expecting a single one)
+2016-05-29 16:11:42,355 [DEBUG] from application in application-akka.actor.default-dispatcher-2 - SqlMappingError(No rows when expecting a single one)
+2016-05-29 16:13:32,777 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Stopping application at 2016-05-29T19:13:32.776Z after 132s.
+2016-05-29 16:13:32,789 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
+2016-05-29 16:13:33,197 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
+2016-05-29 16:13:33,208 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
+2016-05-29 16:13:33,213 [INFO] from application in application-akka.actor.default-dispatcher-3 - ApplicationTimer demo: Starting application at 2016-05-29T19:13:33.210Z.
+2016-05-29 16:13:33,822 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
+2016-05-29 16:38:54,392 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Stopping application at 2016-05-29T19:38:54.392Z after 1521s.
+2016-05-29 16:38:54,392 [INFO] from application in application-akka.actor.default-dispatcher-4 - Shutting down connection pool.
+2016-05-29 16:38:54,722 [INFO] from application in application-akka.actor.default-dispatcher-4 - Creating Pool for datasource 'default'
+2016-05-29 16:38:54,732 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-4 - Database [default] connected at jdbc:h2:mem:play
+2016-05-29 16:38:54,738 [INFO] from application in application-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2016-05-29T19:38:54.733Z.
+2016-05-29 16:38:55,440 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-4 - Application started (Dev)
+2016-05-29 16:39:32,610 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Stopping application at 2016-05-29T19:39:32.610Z after 38s.
+2016-05-29 16:39:32,610 [INFO] from application in application-akka.actor.default-dispatcher-6 - Shutting down connection pool.
+2016-05-29 16:39:32,963 [INFO] from application in application-akka.actor.default-dispatcher-6 - Creating Pool for datasource 'default'
+2016-05-29 16:39:32,967 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-6 - Database [default] connected at jdbc:h2:mem:play
+2016-05-29 16:39:32,975 [INFO] from application in application-akka.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2016-05-29T19:39:32.970Z.
+2016-05-29 16:39:33,647 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-6 - Application started (Dev)
+2016-05-29 16:46:57,013 [INFO] from application in application-akka.actor.default-dispatcher-14 - ApplicationTimer demo: Stopping application at 2016-05-29T19:46:57.012Z after 445s.
+2016-05-29 16:46:57,013 [INFO] from application in application-akka.actor.default-dispatcher-14 - Shutting down connection pool.
+2016-05-29 16:46:57,454 [INFO] from application in application-akka.actor.default-dispatcher-14 - Creating Pool for datasource 'default'
+2016-05-29 16:46:57,468 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-14 - Database [default] connected at jdbc:h2:mem:play
+2016-05-29 16:46:57,475 [INFO] from application in application-akka.actor.default-dispatcher-14 - ApplicationTimer demo: Starting application at 2016-05-29T19:46:57.470Z.
+2016-05-29 16:47:02,367 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-14 - Application started (Dev)
+2016-05-29 16:49:12,716 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - SqlMappingError(No rows when expecting a single one)

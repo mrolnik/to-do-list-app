@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/mica/Desktop/WIX/to-do-list-app/conf/routes
-// @DATE:Sun May 29 05:26:14 ART 2016
+// @DATE:Sun May 29 16:46:50 ART 2016
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -9,98 +9,59 @@ import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamic
 
 import _root_.controllers.Assets.Asset
 
-// @LINE:6
+// @LINE:5
 package controllers {
 
-  // @LINE:13
-  class ReverseAssets(_prefix: => String) {
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:13
-    def versioned(file:Asset): Call = {
-      implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
-      Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[Asset]].unbind("file", file))
-    }
-  
-  }
-
-  // @LINE:8
-  class ReverseCountController(_prefix: => String) {
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:8
-    def count(): Call = {
-      import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "count")
-    }
-  
-  }
-
-  // @LINE:15
+  // @LINE:7
   class ReverseTodoController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:15
-    def addItem(desctiption:String): Call = {
+    // @LINE:11
+    def delete(id:Int): Call = {
       import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "add/" + implicitly[PathBindable[String]].unbind("desctiption", dynamicString(desctiption)))
+      Call("DELETE", _prefix + { _defaultPrefix } + "todo/" + implicitly[PathBindable[Int]].unbind("id", id))
     }
-  
-    // @LINE:18
-    def getAllItems(): Call = {
-      import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "all")
-    }
-  
-    // @LINE:17
-    def deleteItem(id:Int): Call = {
-      import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "delete/" + implicitly[PathBindable[Int]].unbind("id", id))
-    }
-  
-    // @LINE:16
-    def getItem(id:Int): Call = {
-      import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "get/" + implicitly[PathBindable[Int]].unbind("id", id))
-    }
-  
-  }
-
-  // @LINE:6
-  class ReverseHomeController(_prefix: => String) {
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:6
-    def index(): Call = {
-      import ReverseRouteContext.empty
-      Call("GET", _prefix)
-    }
-  
-  }
-
-  // @LINE:10
-  class ReverseAsyncController(_prefix: => String) {
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
   
     // @LINE:10
-    def message(): Call = {
+    def get(id:Int): Call = {
       import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "message")
+      Call("GET", _prefix + { _defaultPrefix } + "todo/" + implicitly[PathBindable[Int]].unbind("id", id))
+    }
+  
+    // @LINE:9
+    def getHistory(): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "todo/history")
+    }
+  
+    // @LINE:8
+    def getAll(): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "todo/all")
+    }
+  
+    // @LINE:7
+    def add(): Call = {
+      import ReverseRouteContext.empty
+      Call("POST", _prefix + { _defaultPrefix } + "todo/")
+    }
+  
+  }
+
+  // @LINE:5
+  class ReverseAssets(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:5
+    def versioned(file:Asset): Call = {
+      implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
+      Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[Asset]].unbind("file", file))
     }
   
   }

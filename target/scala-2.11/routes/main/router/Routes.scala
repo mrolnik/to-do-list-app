@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/mica/Desktop/WIX/to-do-list-app/conf/routes
-// @DATE:Sun May 29 05:26:14 ART 2016
+// @DATE:Sun May 29 16:46:50 ART 2016
 
 package router
 
@@ -15,38 +15,26 @@ import _root_.controllers.Assets.Asset
 
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
-  // @LINE:6
-  HomeController_1: controllers.HomeController,
-  // @LINE:8
-  CountController_0: controllers.CountController,
-  // @LINE:10
-  AsyncController_2: controllers.AsyncController,
-  // @LINE:13
-  Assets_4: controllers.Assets,
-  // @LINE:15
-  TodoController_3: controllers.TodoController,
+  // @LINE:5
+  Assets_0: controllers.Assets,
+  // @LINE:7
+  TodoController_1: controllers.TodoController,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
-    // @LINE:6
-    HomeController_1: controllers.HomeController,
-    // @LINE:8
-    CountController_0: controllers.CountController,
-    // @LINE:10
-    AsyncController_2: controllers.AsyncController,
-    // @LINE:13
-    Assets_4: controllers.Assets,
-    // @LINE:15
-    TodoController_3: controllers.TodoController
-  ) = this(errorHandler, HomeController_1, CountController_0, AsyncController_2, Assets_4, TodoController_3, "/")
+    // @LINE:5
+    Assets_0: controllers.Assets,
+    // @LINE:7
+    TodoController_1: controllers.TodoController
+  ) = this(errorHandler, Assets_0, TodoController_1, "/")
 
   import ReverseRouteContext.empty
 
   def withPrefix(prefix: String): Routes = {
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_1, CountController_0, AsyncController_2, Assets_4, TodoController_3, prefix)
+    new Routes(errorHandler, Assets_0, TodoController_1, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -54,14 +42,12 @@ class Routes(
   }
 
   def documentation = List(
-    ("""GET""", this.prefix, """controllers.HomeController.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """count""", """controllers.CountController.count"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """message""", """controllers.AsyncController.message"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """add/""" + "$" + """desctiption<[^/]+>""", """controllers.TodoController.addItem(desctiption:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """get/""" + "$" + """id<[^/]+>""", """controllers.TodoController.getItem(id:Int)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """delete/""" + "$" + """id<[^/]+>""", """controllers.TodoController.deleteItem(id:Int)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """all""", """controllers.TodoController.getAllItems"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """todo/""", """controllers.TodoController.add"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """todo/all""", """controllers.TodoController.getAll"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """todo/history""", """controllers.TodoController.getHistory"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """todo/""" + "$" + """id<[^/]+>""", """controllers.TodoController.get(id:Int)"""),
+    ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """todo/""" + "$" + """id<[^/]+>""", """controllers.TodoController.delete(id:Int)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -69,191 +55,148 @@ class Routes(
   }}
 
 
-  // @LINE:6
-  private[this] lazy val controllers_HomeController_index0_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix)))
-  )
-  private[this] lazy val controllers_HomeController_index0_invoker = createInvoker(
-    HomeController_1.index,
-    HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.HomeController",
-      "index",
-      Nil,
-      "GET",
-      """ An example controller showing a sample home page""",
-      this.prefix + """"""
-    )
-  )
-
-  // @LINE:8
-  private[this] lazy val controllers_CountController_count1_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("count")))
-  )
-  private[this] lazy val controllers_CountController_count1_invoker = createInvoker(
-    CountController_0.count,
-    HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.CountController",
-      "count",
-      Nil,
-      "GET",
-      """ An example controller showing how to use dependency injection""",
-      this.prefix + """count"""
-    )
-  )
-
-  // @LINE:10
-  private[this] lazy val controllers_AsyncController_message2_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("message")))
-  )
-  private[this] lazy val controllers_AsyncController_message2_invoker = createInvoker(
-    AsyncController_2.message,
-    HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.AsyncController",
-      "message",
-      Nil,
-      "GET",
-      """ An example controller showing how to write asynchronous code""",
-      this.prefix + """message"""
-    )
-  )
-
-  // @LINE:13
-  private[this] lazy val controllers_Assets_versioned3_route = Route("GET",
+  // @LINE:5
+  private[this] lazy val controllers_Assets_versioned0_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned3_invoker = createInvoker(
-    Assets_4.versioned(fakeValue[String], fakeValue[Asset]),
+  private[this] lazy val controllers_Assets_versioned0_invoker = createInvoker(
+    Assets_0.versioned(fakeValue[String], fakeValue[Asset]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Assets",
       "versioned",
       Seq(classOf[String], classOf[Asset]),
       "GET",
-      """ Map static resources from the /public folder to the /assets URL path""",
+      """ Routes
+ This file defines all application routes (Higher priority routes first)
+ ~~~~
+ Map static resources from the /public folder to the /assets URL path""",
       this.prefix + """assets/""" + "$" + """file<.+>"""
     )
   )
 
-  // @LINE:15
-  private[this] lazy val controllers_TodoController_addItem4_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("add/"), DynamicPart("desctiption", """[^/]+""",true)))
+  // @LINE:7
+  private[this] lazy val controllers_TodoController_add1_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("todo/")))
   )
-  private[this] lazy val controllers_TodoController_addItem4_invoker = createInvoker(
-    TodoController_3.addItem(fakeValue[String]),
+  private[this] lazy val controllers_TodoController_add1_invoker = createInvoker(
+    TodoController_1.add,
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.TodoController",
-      "addItem",
-      Seq(classOf[String]),
-      "GET",
+      "add",
+      Nil,
+      "POST",
       """""",
-      this.prefix + """add/""" + "$" + """desctiption<[^/]+>"""
+      this.prefix + """todo/"""
     )
   )
 
-  // @LINE:16
-  private[this] lazy val controllers_TodoController_getItem5_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("get/"), DynamicPart("id", """[^/]+""",true)))
+  // @LINE:8
+  private[this] lazy val controllers_TodoController_getAll2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("todo/all")))
   )
-  private[this] lazy val controllers_TodoController_getItem5_invoker = createInvoker(
-    TodoController_3.getItem(fakeValue[Int]),
+  private[this] lazy val controllers_TodoController_getAll2_invoker = createInvoker(
+    TodoController_1.getAll,
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.TodoController",
-      "getItem",
-      Seq(classOf[Int]),
-      "GET",
-      """""",
-      this.prefix + """get/""" + "$" + """id<[^/]+>"""
-    )
-  )
-
-  // @LINE:17
-  private[this] lazy val controllers_TodoController_deleteItem6_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("delete/"), DynamicPart("id", """[^/]+""",true)))
-  )
-  private[this] lazy val controllers_TodoController_deleteItem6_invoker = createInvoker(
-    TodoController_3.deleteItem(fakeValue[Int]),
-    HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.TodoController",
-      "deleteItem",
-      Seq(classOf[Int]),
-      "GET",
-      """""",
-      this.prefix + """delete/""" + "$" + """id<[^/]+>"""
-    )
-  )
-
-  // @LINE:18
-  private[this] lazy val controllers_TodoController_getAllItems7_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("all")))
-  )
-  private[this] lazy val controllers_TodoController_getAllItems7_invoker = createInvoker(
-    TodoController_3.getAllItems,
-    HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.TodoController",
-      "getAllItems",
+      "getAll",
       Nil,
       "GET",
       """""",
-      this.prefix + """all"""
+      this.prefix + """todo/all"""
+    )
+  )
+
+  // @LINE:9
+  private[this] lazy val controllers_TodoController_getHistory3_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("todo/history")))
+  )
+  private[this] lazy val controllers_TodoController_getHistory3_invoker = createInvoker(
+    TodoController_1.getHistory,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TodoController",
+      "getHistory",
+      Nil,
+      "GET",
+      """""",
+      this.prefix + """todo/history"""
+    )
+  )
+
+  // @LINE:10
+  private[this] lazy val controllers_TodoController_get4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("todo/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_TodoController_get4_invoker = createInvoker(
+    TodoController_1.get(fakeValue[Int]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TodoController",
+      "get",
+      Seq(classOf[Int]),
+      "GET",
+      """""",
+      this.prefix + """todo/""" + "$" + """id<[^/]+>"""
+    )
+  )
+
+  // @LINE:11
+  private[this] lazy val controllers_TodoController_delete5_route = Route("DELETE",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("todo/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_TodoController_delete5_invoker = createInvoker(
+    TodoController_1.delete(fakeValue[Int]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TodoController",
+      "delete",
+      Seq(classOf[Int]),
+      "DELETE",
+      """""",
+      this.prefix + """todo/""" + "$" + """id<[^/]+>"""
     )
   )
 
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
-    // @LINE:6
-    case controllers_HomeController_index0_route(params) =>
+    // @LINE:5
+    case controllers_Assets_versioned0_route(params) =>
+      call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
+        controllers_Assets_versioned0_invoker.call(Assets_0.versioned(path, file))
+      }
+  
+    // @LINE:7
+    case controllers_TodoController_add1_route(params) =>
       call { 
-        controllers_HomeController_index0_invoker.call(HomeController_1.index)
+        controllers_TodoController_add1_invoker.call(TodoController_1.add)
       }
   
     // @LINE:8
-    case controllers_CountController_count1_route(params) =>
+    case controllers_TodoController_getAll2_route(params) =>
       call { 
-        controllers_CountController_count1_invoker.call(CountController_0.count)
+        controllers_TodoController_getAll2_invoker.call(TodoController_1.getAll)
+      }
+  
+    // @LINE:9
+    case controllers_TodoController_getHistory3_route(params) =>
+      call { 
+        controllers_TodoController_getHistory3_invoker.call(TodoController_1.getHistory)
       }
   
     // @LINE:10
-    case controllers_AsyncController_message2_route(params) =>
-      call { 
-        controllers_AsyncController_message2_invoker.call(AsyncController_2.message)
-      }
-  
-    // @LINE:13
-    case controllers_Assets_versioned3_route(params) =>
-      call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned3_invoker.call(Assets_4.versioned(path, file))
-      }
-  
-    // @LINE:15
-    case controllers_TodoController_addItem4_route(params) =>
-      call(params.fromPath[String]("desctiption", None)) { (desctiption) =>
-        controllers_TodoController_addItem4_invoker.call(TodoController_3.addItem(desctiption))
-      }
-  
-    // @LINE:16
-    case controllers_TodoController_getItem5_route(params) =>
+    case controllers_TodoController_get4_route(params) =>
       call(params.fromPath[Int]("id", None)) { (id) =>
-        controllers_TodoController_getItem5_invoker.call(TodoController_3.getItem(id))
+        controllers_TodoController_get4_invoker.call(TodoController_1.get(id))
       }
   
-    // @LINE:17
-    case controllers_TodoController_deleteItem6_route(params) =>
+    // @LINE:11
+    case controllers_TodoController_delete5_route(params) =>
       call(params.fromPath[Int]("id", None)) { (id) =>
-        controllers_TodoController_deleteItem6_invoker.call(TodoController_3.deleteItem(id))
-      }
-  
-    // @LINE:18
-    case controllers_TodoController_getAllItems7_route(params) =>
-      call { 
-        controllers_TodoController_getAllItems7_invoker.call(TodoController_3.getAllItems)
+        controllers_TodoController_delete5_invoker.call(TodoController_1.delete(id))
       }
   }
 }

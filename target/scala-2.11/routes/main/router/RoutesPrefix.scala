@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/mica/Desktop/WIX/to-do-list-app/conf/routes
-// @DATE:Sun May 29 05:26:14 ART 2016
+// @DATE:Sun May 29 16:46:50 ART 2016
 
 
 package router {
