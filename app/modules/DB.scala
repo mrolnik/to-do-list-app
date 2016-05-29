@@ -1,13 +1,12 @@
 package modules
 
-import java.time.Instant
 import java.util.Date
 import javax.inject.{Inject, Singleton}
 
+import anorm.{SQL, SqlParser}
 import models.Todo
+import play.Logger
 import play.api.db.Database
-import anorm.SQL
-import scala.util.{Success, Try}
 
 /**
   * Created by mica on 28/05/16.
@@ -15,48 +14,105 @@ import scala.util.{Success, Try}
 @Singleton
 class DB @Inject()(db : Database){
 
+  val ID_COLUMN = "id"
+  val DESCRIPTION_COLUMN = "description"
+  val DATE_COLUMN = "date"
+
   db.withConnection {implicit c =>
     SQL(
       """
-        DROP TABLE TODO IF EXISTS
+        CREATE TABLE IF NOT EXISTS TODO (
+        id MEDIUMINT NOT NULL AUTO_INCREMENT,
+        description VARCHAR(255) NOT NULL,
+        date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id));
       """
     ).execute()
 
     SQL(
       """
-        CREATE TABLE TODO (
+        CREATE TABLE IF NOT EXISTS HISTORY (
         id MEDIUMINT NOT NULL AUTO_INCREMENT,
+        itemId MEDIUMINT NOT NULL,
         description VARCHAR(255) NOT NULL,
+        ID TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id));
       """
     ).execute()
 
   }
 
-  def getItem(id: Int): Try[Option[Todo]] = {
+  def trackTransaction(description: String, itemId: Long) = {
+    SQL(s"INSERT INTO HISTORY (description, itemId) VALUES ('${description}', ${itemId})").executeInsert()
+  }
+
+  def getItem(id: Int): Option[Todo] = {
     db.withConnection { implicit c =>
-      val a = SQL( s"SELECT * FROM TODO WHERE ID=${id}").executeQuery()
-      Success(Some(Todo(id, "descripcion", Date.from(Instant.now))))
+      try {
+        val result =  SQL( s"SELECT * FROM TODO WHERE ID=${id}").executeQuery()
+        val description = result.as(SqlParser.str(DESCRIPTION_COLUMN).single)
+        val date = result.as(SqlParser.date(DATE_COLUMN).single)
+        Some(Todo(id, description, date))
+      }catch{
+        case e:Exception  => {
+          Logger.debug(e.getMessage())
+          None
+        }
+      }
     }
   }
 
-  def addItem(description: String) : Try[Int] = {
-    db.withConnection { implicit c =>
-      val a = SQL("INSERT INTO TODO (description) VALUES ({description})")
-              .on("description" -> description).executeInsert()
+  def addItem(description: String) : Option[Long] = {
+      db.withConnection { implicit c =>
+        try {
+          SQL(s"INSERT INTO TODO (description) VALUES ('${description}')").executeInsert() match {
+            case Some(id) => {
+                trackTransaction("ITEM ADDED",id)
+                Some(id)
+            }
+              case _ => None
+          }
 
-      Success(1)
-    }
-    /*db.withConnection { conn =>
-      val stmt = conn.createStatement()
-  stmt.pr
-      val rs = stmt.executeQuery(s"INSERT INTO TODO (description) VALUES ('${description}')")
-
-      while (rs.next()) {
-        resp += rs.getString("DESCRIPTION")
+        }catch{
+          case e:Exception  => {
+            Logger.debug(e.getMessage())
+            None
+          }
+        }
       }
-}
-      */
+  }
+
+  def deleteItem(id: Int): Boolean = {
+    db.withConnection { implicit c =>
+      try {
+        SQL(s"DELETE FROM TODO WHERE ID=${id}").executeUpdate() match {
+          case i if i != 0 => true
+          case _ => false
+        }
+      }catch{
+        case e:Exception  => {
+          Logger.debug(e.getMessage())
+          false
+        }
+      }
+    }
+  }
+
+  def getAllItems : Option[List[Todo]] = {
+    db.withConnection { implicit c =>
+      try {
+        val result =  SQL( s"SELECT * FROM TODO").executeQuery()
+        Some(result() map {
+          row =>
+            Todo(row[Int]("id"), row[String]("description"), row[Date]("date"))
+        } toList)
+      }catch{
+        case e:Exception  => {
+          Logger.debug(e.getMessage())
+          None
+        }
+      }
+    }
   }
 
 }

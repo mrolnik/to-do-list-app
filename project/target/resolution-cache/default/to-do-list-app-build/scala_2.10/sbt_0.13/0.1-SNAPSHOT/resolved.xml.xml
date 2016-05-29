@@ -4,7 +4,7 @@
 		module="to-do-list-app-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20160529012312"
+		publication="20160529040354"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>

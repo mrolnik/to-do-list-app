@@ -10777,7 +10777,7 @@
 [debug] 	[NOT REQUIRED] org.scala-sbt#apply-macro;0.13.11!apply-macro.jar
 [debug] 	[NOT REQUIRED] org.scala-lang#jline;2.10.6!jline.jar
 [debug] 	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar
-[debug] :: resolution report :: resolve 10195ms :: artifacts dl 425ms
+[debug] :: resolution report :: resolve 9453ms :: artifacts dl 184ms
 [debug] 	report for default#to-do-list-app-build;0.1-SNAPSHOT compile produced in /home/mica/Desktop/WIX/to-do-list-app/project/target/resolution-cache/reports/default-to-do-list-app-build-compile.xml
 [debug] 	report for default#to-do-list-app-build;0.1-SNAPSHOT runtime produced in /home/mica/Desktop/WIX/to-do-list-app/project/target/resolution-cache/reports/default-to-do-list-app-build-runtime.xml
 [debug] 	report for default#to-do-list-app-build;0.1-SNAPSHOT test produced in /home/mica/Desktop/WIX/to-do-list-app/project/target/resolution-cache/reports/default-to-do-list-app-build-test.xml
@@ -10791,5 +10791,5 @@
 [debug] 	report for default#to-do-list-app-build;0.1-SNAPSHOT docs produced in /home/mica/Desktop/WIX/to-do-list-app/project/target/resolution-cache/reports/default-to-do-list-app-build-docs.xml
 [debug] 	report for default#to-do-list-app-build;0.1-SNAPSHOT pom produced in /home/mica/Desktop/WIX/to-do-list-app/project/target/resolution-cache/reports/default-to-do-list-app-build-pom.xml
 [debug] 	report for default#to-do-list-app-build;0.1-SNAPSHOT scala-tool produced in /home/mica/Desktop/WIX/to-do-list-app/project/target/resolution-cache/reports/default-to-do-list-app-build-scala-tool.xml
-[debug] 	resolve done (10195ms resolve - 425ms download)
+[debug] 	resolve done (9453ms resolve - 184ms download)
 [info] Done updating.

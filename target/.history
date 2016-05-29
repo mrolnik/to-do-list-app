@@ -10,3 +10,5 @@ clean
 compile
 build
 h2-playserver
+h2-playbrowser
+h2-browser

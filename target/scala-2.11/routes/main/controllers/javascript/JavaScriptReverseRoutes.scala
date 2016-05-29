@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/mica/Desktop/WIX/to-do-list-app/conf/routes
-// @DATE:Sun May 29 03:04:09 ART 2016
+// @DATE:Sun May 29 05:26:14 ART 2016
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -68,6 +68,26 @@ package controllers.javascript {
       """
         function(desctiption0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "add/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("desctiption", encodeURIComponent(desctiption0))})
+        }
+      """
+    )
+  
+    // @LINE:18
+    def getAllItems: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.TodoController.getAllItems",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "all"})
+        }
+      """
+    )
+  
+    // @LINE:17
+    def deleteItem: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.TodoController.deleteItem",
+      """
+        function(id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "delete/" + (""" + implicitly[PathBindable[Int]].javascriptUnbind + """)("id", id0)})
         }
       """
     )

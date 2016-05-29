@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/mica/Desktop/WIX/to-do-list-app/conf/routes
-// @DATE:Sun May 29 03:04:09 ART 2016
+// @DATE:Sun May 29 05:26:14 ART 2016
 
 package router
 
@@ -60,6 +60,8 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """add/""" + "$" + """desctiption<[^/]+>""", """controllers.TodoController.addItem(desctiption:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """get/""" + "$" + """id<[^/]+>""", """controllers.TodoController.getItem(id:Int)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """delete/""" + "$" + """id<[^/]+>""", """controllers.TodoController.deleteItem(id:Int)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """all""", """controllers.TodoController.getAllItems"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -169,6 +171,40 @@ class Routes(
     )
   )
 
+  // @LINE:17
+  private[this] lazy val controllers_TodoController_deleteItem6_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("delete/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_TodoController_deleteItem6_invoker = createInvoker(
+    TodoController_3.deleteItem(fakeValue[Int]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TodoController",
+      "deleteItem",
+      Seq(classOf[Int]),
+      "GET",
+      """""",
+      this.prefix + """delete/""" + "$" + """id<[^/]+>"""
+    )
+  )
+
+  // @LINE:18
+  private[this] lazy val controllers_TodoController_getAllItems7_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("all")))
+  )
+  private[this] lazy val controllers_TodoController_getAllItems7_invoker = createInvoker(
+    TodoController_3.getAllItems,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TodoController",
+      "getAllItems",
+      Nil,
+      "GET",
+      """""",
+      this.prefix + """all"""
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -206,6 +242,18 @@ class Routes(
     case controllers_TodoController_getItem5_route(params) =>
       call(params.fromPath[Int]("id", None)) { (id) =>
         controllers_TodoController_getItem5_invoker.call(TodoController_3.getItem(id))
+      }
+  
+    // @LINE:17
+    case controllers_TodoController_deleteItem6_route(params) =>
+      call(params.fromPath[Int]("id", None)) { (id) =>
+        controllers_TodoController_deleteItem6_invoker.call(TodoController_3.deleteItem(id))
+      }
+  
+    // @LINE:18
+    case controllers_TodoController_getAllItems7_route(params) =>
+      call { 
+        controllers_TodoController_getAllItems7_invoker.call(TodoController_3.getAllItems)
       }
   }
 }

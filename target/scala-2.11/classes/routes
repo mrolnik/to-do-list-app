@@ -12,8 +12,10 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-GET  /add/:desctiption                           controllers.TodoController.addItem(desctiption: String)
-GET  /get/:id                           controllers.TodoController.getItem(id: Int)
+GET  /add/:desctiption              controllers.TodoController.addItem(desctiption: String)
+GET  /get/:id                       controllers.TodoController.getItem(id: Int)
+GET  /delete/:id                    controllers.TodoController.deleteItem(id: Int)
+GET  /all                           controllers.TodoController.getAllItems
 #addItem (description) - adds an item to the list. Returns an ID.
 #POST    /                           controllers.TodoController.add
 #getAllitems() - returns a list of the items and when was the item added to the list.

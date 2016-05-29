@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/mica/Desktop/WIX/to-do-list-app/conf/routes
-// @DATE:Sun May 29 03:04:09 ART 2016
+// @DATE:Sun May 29 05:26:14 ART 2016
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -53,6 +53,18 @@ package controllers {
     def addItem(desctiption:String): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "add/" + implicitly[PathBindable[String]].unbind("desctiption", dynamicString(desctiption)))
+    }
+  
+    // @LINE:18
+    def getAllItems(): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "all")
+    }
+  
+    // @LINE:17
+    def deleteItem(id:Int): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "delete/" + implicitly[PathBindable[Int]].unbind("id", id))
     }
   
     // @LINE:16
