@@ -4,7 +4,7 @@
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-POST    /todo/              controllers.TodoController.add
+POST    /todo               controllers.TodoController.add
 GET     /todo/all           controllers.TodoController.getAll
 GET     /todo/history       controllers.TodoController.getHistory
 GET     /todo/:id           controllers.TodoController.get(id: Int)
