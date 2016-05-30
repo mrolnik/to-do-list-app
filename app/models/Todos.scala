@@ -7,9 +7,11 @@ import play.api.libs.json.{JsValue, Json}
 /**
   * Created by mica on 28/05/16.
   */
-trait JsonTodo {
+trait Json{
+  def toJson: JsValue
+}
+trait JsonTodo extends Json{
   protected val format = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-  def toJson :JsValue
 }
 
 case class Todo(id: Int, description: String, date : Date) extends JsonTodo{
@@ -34,3 +36,8 @@ case class TodoHistory(id: Int, description: String, itemId: Int, date : Date) e
     )
   }
 }
+
+
+
+
+

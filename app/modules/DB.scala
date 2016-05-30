@@ -4,8 +4,8 @@ import java.sql.Connection
 import java.util.Date
 import javax.inject.{Inject, Singleton}
 
-import anorm.{SQL, SqlParser}
-import models.{TodoHistory, Todo}
+import anorm.{SQL, SqlParser, SqlStringInterpolation}
+import models.{Todo, TodoHistory}
 import play.Logger
 import play.api.db.Database
 
@@ -44,92 +44,94 @@ class DB @Inject()(db : Database){
   }
 
   def trackTransaction(description: String, itemId: Long)(implicit c :Connection) = {
-    SQL(s"INSERT INTO HISTORY (description, itemId) VALUES ('${description}', ${itemId})").executeInsert()
+    SQL"INSERT INTO HISTORY (description, itemId) VALUES ('$description', $itemId)".executeInsert()
   }
 
   def getItem(id: Int): Option[Todo] = {
-    db.withConnection { implicit c =>
-      try {
-        val result =  SQL( s"SELECT * FROM TODO WHERE ID=${id}").executeQuery()
+    try {
+      db.withConnection { implicit c =>
+        val result =  SQL"SELECT * FROM TODO WHERE ID=$id".executeQuery()
         val description = result.as(SqlParser.str(DESCRIPTION_COLUMN).single)
         val date = result.as(SqlParser.date(DATE_COLUMN).single)
         Some(Todo(id, description, date))
-      }catch{
-        case e:Exception  => {
-          Logger.debug(e.getMessage())
-          None
-        }
+      }
+    }catch{
+      case e:Exception  => {
+        Logger.error("Error retrieving item", e)
+        None
       }
     }
   }
 
   def addItem(description: String) : Option[Long] = {
-      db.withConnection { implicit c =>
-        try {
-          val idOption = SQL(s"INSERT INTO TODO (description) VALUES ('${description}')").executeInsert()
+    try {
+      db.withTransaction { implicit c =>
+          val idOption = SQL"INSERT INTO TODO (description) VALUES ($description)".executeInsert()
 
           idOption match{
-            case Some(id : Long) => trackTransaction("ITEM ADDED",id)
+            case Some(id: Long) => trackTransaction("ITEM ADDED", id)
+            case _ => None
           }
-
-        }catch{
-          case e:Exception  => {
-            Logger.debug(e.getMessage())
-            None
-          }
-        }
       }
+    }catch{
+      case e:Exception  => {
+        Logger.error("Error adding item", e)
+        None
+      }
+    }
   }
 
   def deleteItem(id: Int): Boolean = {
-    db.withConnection { implicit c =>
-      try {
-        SQL(s"DELETE FROM TODO WHERE ID=${id}").executeUpdate() match {
+    try {
+      db.withTransaction { implicit c =>
+
+        SQL"DELETE FROM TODO WHERE ID=$id".executeUpdate() match {
           case i if i != 0 => {
             trackTransaction("ITEM DELETED", id)
             true
           }
           case _ => false
         }
-      }catch{
-        case e:Exception  => {
-          Logger.debug(e.getMessage())
-          false
-        }
+      }
+    }catch{
+      case e:Exception  => {
+        Logger.error("Error deleting item", e)
+        false
       }
     }
   }
 
   def getAllItems : Option[List[Todo]] = {
-    db.withConnection { implicit c =>
-      try {
-        val result =  SQL( s"SELECT * FROM TODO").executeQuery()
-        Some(result() map {
-          row =>
-            Todo(row[Int]("id"), row[String]("description"), row[Date]("date"))
-        } toList)
-      }catch{
-        case e:Exception  => {
-          Logger.debug(e.getMessage())
-          None
-        }
+    try {
+      db.withConnection { implicit c =>
+          val result =  SQL"SELECT * FROM TODO".executeQuery()
+          val todos = result() map {
+            row => Todo(row[Int]("id"), row[String]("description"), row[Date]("date"))
+          }
+
+          Some(todos.toList)
+      }
+    }catch{
+      case e:Exception  => {
+        Logger.error("Error retrieving all items", e)
+        None
       }
     }
   }
 
   def getHistory :  Option[List[TodoHistory]] = {
-    db.withConnection { implicit c =>
-      try {
-        val result =  SQL( s"SELECT * FROM HISTORY").executeQuery()
-        Some(result() map {
-          row =>
-            TodoHistory(row[Int]("id"), row[String]("description"), row[Int]("itemId"), row[Date]("date"))
-        } toList)
-      }catch{
-        case e:Exception  => {
-          Logger.debug(e.getMessage())
-          None
-        }
+    try {
+      db.withConnection { implicit c =>
+          val result =  SQL"SELECT * FROM HISTORY".executeQuery()
+          val historyItems = result() map {
+            row => TodoHistory(row[Int]("id"), row[String]("description"), row[Int]("itemId"), row[Date]("date"))
+          }
+          Some(historyItems.toList)
+      }
+    }catch{
+      case e:Exception  => {
+        Logger.error("Error retrieving history", e)
+        None
       }
     }
   }
