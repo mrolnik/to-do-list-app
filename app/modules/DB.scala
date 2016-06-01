@@ -9,6 +9,8 @@ import models.{Todo, TodoHistory}
 import play.Logger
 import play.api.db.Database
 
+import scala.util.{Failure, Success, Try}
+
 /**
   * Created by mica on 28/05/16.
   */
@@ -22,7 +24,7 @@ class DB @Inject()(db : Database){
   db.withConnection {implicit c =>
     SQL(
       """
-        CREATE TABLE IF NOT EXISTS TODO (
+        CREATE TABLE IF NOT EXISTS TODOS(
         id MEDIUMINT NOT NULL AUTO_INCREMENT,
         description VARCHAR(255) NOT NULL,
         date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -34,8 +36,9 @@ class DB @Inject()(db : Database){
       """
         CREATE TABLE IF NOT EXISTS HISTORY (
         id MEDIUMINT NOT NULL AUTO_INCREMENT,
-        itemId MEDIUMINT NOT NULL,
         description VARCHAR(255) NOT NULL,
+        itemId MEDIUMINT NOT NULL,
+        itemDescription VARCHAR(255),
         date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id));
       """
@@ -43,14 +46,58 @@ class DB @Inject()(db : Database){
 
   }
 
-  def trackTransaction(description: String, itemId: Long)(implicit c :Connection) = {
-    SQL"INSERT INTO HISTORY (description, itemId) VALUES ('$description', $itemId)".executeInsert()
+  def trackAdd(itemId: Long, itemDescription: String)(implicit c :Connection) = {
+    SQL"INSERT INTO HISTORY (description, itemId, itemDescription) VALUES ('ADD', $itemId, $itemDescription)".executeInsert()
   }
 
-  def getItem(id: Int): Option[Todo] = {
+  def trackUpdate(itemId: String, itemDescription: String)(implicit c :Connection) = {
+    SQL"INSERT INTO HISTORY (description, itemId, itemDescription) VALUES ('UPDATE', $itemId, $itemDescription)".executeInsert()
+  }
+
+  def trackDelete(itemId: String)(implicit c :Connection) = {
+    SQL"INSERT INTO HISTORY (description, itemId) VALUES ('DELETE', $itemId)".executeInsert()
+  }
+
+  def addItem(description: String) : Option[Long] = {
+    try {
+      db.withTransaction { implicit c =>
+        val idOption: Option[Long] = SQL"INSERT INTO TODOS (description) VALUES ($description)".executeInsert()
+        idOption.map(trackAdd(_, description))
+        idOption
+      }
+    }catch{
+      case e: Exception  => {
+        Logger.error("Error adding item", e)
+        None
+      }
+    }
+  }
+
+  def updateItem(id: String, description: String) : Try[Boolean] = {
+    try {
+      db.withTransaction { implicit c =>
+        val updates = SQL"UPDATE TODOS SET DESCRIPTION=$description WHERE ID=$id".executeUpdate()
+
+        updates match {
+          case i if i > 0 => {
+            trackUpdate(id, description)
+            Success(true)
+          }
+          case _ => Success(false)
+        }
+      }
+    }catch{
+      case e: Exception  => {
+        Logger.error("Error updating item", e)
+        Failure(e)
+      }
+    }
+  }
+
+  def getItem(id: String): Option[Todo] = {
     try {
       db.withConnection { implicit c =>
-        val result =  SQL"SELECT * FROM TODO WHERE ID=$id".executeQuery()
+        val result =  SQL"SELECT * FROM TODOS WHERE ID=$id".executeQuery()
         val description = result.as(SqlParser.str(DESCRIPTION_COLUMN).single)
         val date = result.as(SqlParser.date(DATE_COLUMN).single)
         Some(Todo(id, description, date))
@@ -63,40 +110,22 @@ class DB @Inject()(db : Database){
     }
   }
 
-  def addItem(description: String) : Option[Long] = {
-    try {
-      db.withTransaction { implicit c =>
-          val idOption = SQL"INSERT INTO TODO (description) VALUES ($description)".executeInsert()
-
-          idOption match{
-            case Some(id: Long) => trackTransaction("ITEM ADDED", id)
-            case _ => None
-          }
-      }
-    }catch{
-      case e:Exception  => {
-        Logger.error("Error adding item", e)
-        None
-      }
-    }
-  }
-
-  def deleteItem(id: Int): Boolean = {
+  def deleteItem(id: String): Try[Boolean] = {
     try {
       db.withTransaction { implicit c =>
 
-        SQL"DELETE FROM TODO WHERE ID=$id".executeUpdate() match {
-          case i if i != 0 => {
-            trackTransaction("ITEM DELETED", id)
-            true
+        SQL"DELETE FROM TODOS WHERE ID=$id".executeUpdate() match {
+          case i if i > 0 => {
+            trackDelete(id)
+            Success(true)
           }
-          case _ => false
+          case _ => Success(false)
         }
       }
     }catch{
-      case e:Exception  => {
+      case e: Exception  => {
         Logger.error("Error deleting item", e)
-        false
+        Failure(e)
       }
     }
   }
@@ -104,12 +133,14 @@ class DB @Inject()(db : Database){
   def getAllItems : Option[List[Todo]] = {
     try {
       db.withConnection { implicit c =>
-          val result =  SQL"SELECT * FROM TODO".executeQuery()
-          val todos = result() map {
-            row => Todo(row[Int]("id"), row[String]("description"), row[Date]("date"))
+          val result =  SQL"SELECT * FROM TODOS".foldWhile(List[Todo]()) {
+            (list, row) => list.::(Todo(row[Int]("id").toString, row[String]("description"), row[Date]("date"))) -> true
           }
 
-          Some(todos.toList)
+          result match {
+            case Right(list) => Some(list)
+            case Left(_)  => None
+          }
       }
     }catch{
       case e:Exception  => {
@@ -122,11 +153,16 @@ class DB @Inject()(db : Database){
   def getHistory :  Option[List[TodoHistory]] = {
     try {
       db.withConnection { implicit c =>
-          val result =  SQL"SELECT * FROM HISTORY".executeQuery()
-          val historyItems = result() map {
-            row => TodoHistory(row[Int]("id"), row[String]("description"), row[Int]("itemId"), row[Date]("date"))
+        val result =  SQL"SELECT * FROM HISTORY".foldWhile(List[TodoHistory]()) {
+          (list, row) => {
+            list.::(TodoHistory(row[Int]("id").toString, row[String]("description"), row[Int]("itemId").toString, row[Option[String]]("itemDescription"), row[Date]("date"))) -> true
           }
-          Some(historyItems.toList)
+        }
+
+        result match {
+          case Right(list) => Some(list)
+          case Left(_)  => None
+        }
       }
     }catch{
       case e:Exception  => {
@@ -135,5 +171,4 @@ class DB @Inject()(db : Database){
       }
     }
   }
-
 }
