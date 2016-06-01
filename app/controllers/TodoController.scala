@@ -75,14 +75,14 @@ class TodoController @Inject()(module: TodoModule) extends Controller with JsonR
     module.getHistory map {
       historyList =>
         val list = historyList map (item => item.toJson)
-        Ok(Json.toJson(list)).as("application/json; charset=UTF-8")
-    } getOrElse InternalServerError("Something went wrong")
+        ok(Json.toJson(list))
+    } getOrElse internalServerError
   }
 
 
   def get(id: String) = Action {
     module.getItem(id) map {
-      todo => Ok(todo.toJson).as("application/json; charset=UTF-8")
-    } getOrElse NotFound("Sorry! The item you are looking for doesn't exist!")
+      todo => ok(todo.toJson)
+    } getOrElse wrongId
   }
 }

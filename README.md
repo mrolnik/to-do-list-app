@@ -59,7 +59,7 @@ __Got all ->__ 200 OK
 	"Date": "2016/06/01 07:11:29"
 },
 {
-	"id": "1"
+	"id": "1",
 	"description": "Buy some milk!",
 	"Date": "2016/06/01 07:10:29"
 }]
@@ -74,16 +74,16 @@ __Got all ->__ 200 OK
 __Got all ->__ 200 OK
 ```javascript
 [{
-	"id": "3"
+	"id": "4",
 	"description": "DELETE",
-	"itemId": "2"
+	"itemId": "2",
 	"Date": "2016/06/01 07:20:29"
 },
 {
-	"id": "3"
+	"id": "3",
 	"description": "UPDATE",
 	"itemDescription": "Buy some more milk!",
-	"itemId": "1"
+	"itemId": "1",
 	"Date": "2016/06/01 07:13:29"
 },
 {
@@ -94,10 +94,10 @@ __Got all ->__ 200 OK
 	"Date": "2016/06/01 07:11:29"
 },
 {
-	"id": "1"
+	"id": "1",
 	"description": "ADD",
 	"itemDescription": "Buy some milk!",
-	"itemId": "1"
+	"itemId": "1",
 	"Date": "2016/06/01 07:10:29"
 }]
 ```
