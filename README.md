@@ -1,7 +1,6 @@
 # To Do List
-----
-> HTTP server for a to-do list.
 
+> HTTP server for a to-do list.
 > Scala app made with Play 2 framework.
 
 ## Pre-requisites
@@ -14,7 +13,7 @@
 - __TYPE__: POST
 - __BODY__: {"description": "Buy some milk"}
 - __HEADERS__: Content-Type: application/json
--
+
 ### Response
 
 __Added ->__ 201 CREATED
@@ -30,7 +29,7 @@ __Added ->__ 201 CREATED
 - __TYPE__: PUT
 - __BODY__: {"description": "Buy some more milk"}
 - __HEADERS__: Content-Type: application/json
--
+
 ### Response
 
 __Updated ->__ 200 OK
